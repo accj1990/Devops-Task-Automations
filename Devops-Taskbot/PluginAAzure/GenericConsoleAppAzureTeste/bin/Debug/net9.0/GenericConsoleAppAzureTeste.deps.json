@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "GenericConsoleAppAzureTeste/1.0.0": {
+        "dependencies": {
+          "ParserPlugin.AzureDevOps.Automation": "1.0.0"
+        },
+        "runtime": {
+          "GenericConsoleAppAzureTeste.dll": {}
+        }
+      },
+      "ParserPlugin.AzureDevOps.Automation/1.0.0": {
+        "runtime": {
+          "ParserPlugin.AzureDevOps.Automation.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "GenericConsoleAppAzureTeste/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ParserPlugin.AzureDevOps.Automation/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

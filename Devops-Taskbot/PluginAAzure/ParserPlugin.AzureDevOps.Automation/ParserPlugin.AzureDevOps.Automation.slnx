@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="../ConsoleAppAzureTeste/ConsoleAppAzureTeste.csproj" Id="30f65d74-4fa9-4681-89dd-a39ddda400cf" />
+  <Project Path="../GenericConsoleAppAzureTeste/GenericConsoleAppAzureTeste.csproj" Id="50493b70-cff3-4bdb-bfb8-37fb596c0df6" />
+  <Project Path="ParserPlugin.AzureDevOps.Automation.csproj" />
+</Solution>

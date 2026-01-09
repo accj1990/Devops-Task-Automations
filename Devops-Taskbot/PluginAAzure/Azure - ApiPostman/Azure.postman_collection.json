@@ -1,0 +1,376 @@
+{
+	"info": {
+		"_postman_id": "db5f66c4-1c06-4ccf-8016-353351dbacf3",
+		"name": "Azure",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11190206"
+	},
+	"item": [
+		{
+			"name": "List projects",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_azure}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dev.azure.com/{{organization}}/_apis/projects",
+					"protocol": "https",
+					"host": [
+						"dev",
+						"azure",
+						"com"
+					],
+					"path": [
+						"{{organization}}",
+						"_apis",
+						"projects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List type",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_azure}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dev.azure.com/{{organization}}/{{project}}/_apis/wit/workitemtypes",
+					"protocol": "https",
+					"host": [
+						"dev",
+						"azure",
+						"com"
+					],
+					"path": [
+						"{{organization}}",
+						"{{project}}",
+						"_apis",
+						"wit",
+						"workitemtypes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create work item",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_azure}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json-patch+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\r\n    \"op\": \"add\",\r\n    \"path\": \"/fields/System.Title\",\r\n    \"value\": \"New Work Item Title\"\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev.azure.com/{{organization}}/{{project}}/_apis/wit/workitems/${{type}}?api-version=7.2-preview.3",
+					"protocol": "https",
+					"host": [
+						"dev",
+						"azure",
+						"com"
+					],
+					"path": [
+						"{{organization}}",
+						"{{project}}",
+						"_apis",
+						"wit",
+						"workitems",
+						"${{type}}"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "7.2-preview.3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Fields",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_azure}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json-patch+json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://dev.azure.com/{{organization}}/{{project}}/_apis/wit/workitemtypes/${{type}}/fields?api-version=7.2-preview.3",
+					"protocol": "https",
+					"host": [
+						"dev",
+						"azure",
+						"com"
+					],
+					"path": [
+						"{{organization}}",
+						"{{project}}",
+						"_apis",
+						"wit",
+						"workitemtypes",
+						"${{type}}",
+						"fields"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "7.2-preview.3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Teste Create work item",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_azure}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json-patch+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\r\n    \"op\": \"add\",\r\n    \"path\": \"/fields/System.Title\",\r\n    \"value\": \"Teste com Descrição e Tags\"\r\n  }, \r\n  {\r\n    \"op\": \"add\",\r\n    \"path\": \"/fields/System.Description\",\r\n    \"value\": \"Descrição\"\r\n  }, \r\n  {\r\n    \"op\": \"add\",\r\n    \"path\": \"/fields/System.AssignedTo\",\r\n    \"value\": \"devvalido@organizacao.com.br\"\r\n  },\r\n  {\r\n    \"op\": \"add\",\r\n    \"path\": \"/fields/Microsoft.VSTS.Scheduling.StoryPoints\",\r\n    \"value\": \"3\"\r\n  }, \r\n  {\r\n    \"op\" : \"add\",\r\n    \"path\" :\"/fields/Microsoft.VSTS.Common.AcceptanceCriteria\",\r\n    \"value\":\"<ul><li>Login funciona</li><li>Erro aparece direito</li><li>Nada quebra — de preferência</li></ul>\"\r\n  }, \r\n  {\r\n    \"op\" : \"add\",\r\n    \"path\" :\"/fields/Microsoft.VSTS.Common.Priority\",\r\n    \"value\":\"3\"\r\n  },\r\n  {\r\n    \"op\" : \"add\",\r\n    \"path\" :\"/fields/System.Tags\",\r\n    \"value\":\"auth; backend; critical\"\r\n  },\r\n  {\r\n    \"op\" : \"add\",\r\n    \"path\" :\"/fields/Microsoft.VSTS.Common.Risk\",\r\n    \"value\":\"2 - Medium\"\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev.azure.com/organization/project/_apis/wit/workitems/$type?api-version=7.2-preview.3",
+					"protocol": "https",
+					"host": [
+						"dev",
+						"azure",
+						"com"
+					],
+					"path": [
+						"organization",
+						"project",
+						"_apis",
+						"wit",
+						"workitems",
+						"$type"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "7.2-preview.3"
+						}
+					]
+				},
+				"description": "Altere o nome da organization, project e type manualmente para testar\n\ntypes validos ex. Bug, User Story, Task\n\nObserve que nem todo WorkItem tem todos os campos, e a api não está testando o comportamento caso algum campo seja utilizado e o WorkItem não tenha.\n\nCabe após fazer a inserção automática conferir se realmente o comportamento esperado e refinar as tarefas."
+			},
+			"response": []
+		},
+		{
+			"name": "List work itens",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_azure}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\r\n    \"op\": \"add\",\r\n    \"path\": \"/fields/System.Title\",\r\n    \"from\": null,\r\n    \"value\": \"Sample task\"\r\n}]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev.azure.com/{{organization}}/{{project}}}/_apis/wit/workitems&api-version=7.2-preview.3",
+					"protocol": "https",
+					"host": [
+						"dev",
+						"azure",
+						"com"
+					],
+					"path": [
+						"{{organization}}",
+						"{{project}}}",
+						"_apis",
+						"wit",
+						"workitems&api-version=7.2-preview.3"
+					]
+				},
+				"description": "Precisa do id da wor"
+			},
+			"response": []
+		},
+		{
+			"name": "Organization",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dev.azure.com/{{organization}}",
+					"protocol": "https",
+					"host": [
+						"dev",
+						"azure",
+						"com"
+					],
+					"path": [
+						"{{organization}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token_azure",
+			"value": ""
+		},
+		{
+			"key": "organization",
+			"value": ""
+		},
+		{
+			"key": "project",
+			"value": ""
+		},
+		{
+			"key": "type",
+			"value": ""
+		}
+	]
+}

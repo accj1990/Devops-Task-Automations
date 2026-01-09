@@ -1,0 +1,123 @@
+# top-most EditorConfig file
+root = true
+
+# ======================================================================
+# CONFIGURAÇÕES GLOBAIS DE ARQUIVO E CODIFICAÇÃO
+# ======================================================================
+
+# Usar UTF-8
+charset = utf-8
+
+# Indentação (espaços)
+indent_style = space
+indent_size = 4
+
+# Quebra de linha (CRLF é o padrão Windows, recomendado para Windows/VS)
+end_of_line = crlf
+
+# Remover espaços em branco ao salvar
+trim_trailing_whitespace = true
+
+# Inserir nova linha no final do arquivo
+insert_final_newline = true
+
+# Tamanho máximo de linha
+max_line_length = 120
+
+
+# ======================================================================
+# CONFIGURAÇÕES PARA C# E VISUAL BASIC (.cs e .vb)
+# Aplicadas a todos os arquivos, a menos que substituídas.
+# ======================================================================
+[*.{cs,vb}]
+
+# Qualificador 'this.' (Definido para 'false' - não usar 'this.' se desnecessário)
+dotnet_style_qualification_for_field = false:suggestion
+dotnet_style_qualification_for_property = false:suggestion
+dotnet_style_qualification_for_method = false:suggestion
+dotnet_style_qualification_for_event = false:suggestion
+
+
+# ======================================================================
+# CONFIGURAÇÕES ESPECÍFICAS PARA C# (.cs)
+# ======================================================================
+[*.cs]
+
+# --- Usings e Imports ---
+# Organizar e remover using automaticamente
+# OBS: Estas linhas substituem as configurações duplicadas do seu arquivo original.
+dotnet_separate_import_groups = true
+dotnet_sort_system_directives_first = true
+# Colocação de Usings (Fora do namespace é o moderno/padrão)
+csharp_using_directive_placement = outside_namespace:silent
+
+
+# --- Estilo de Variável (var) ---
+dotnet_style_var_for_built_in_types = true:suggestion      # Usar var para int, string, etc.
+dotnet_style_var_when_type_is_apparent = true:suggestion   # Usar var quando o tipo é óbvio (ex: new Class())
+dotnet_style_var_elsewhere = false:suggestion              # Não usar var quando o tipo não é aparente
+
+
+# --- Preferência por Expressão de Corpo (=>) ---
+csharp_style_expression_bodied_methods = when_on_single_line:suggestion
+csharp_style_expression_bodied_properties = when_on_single_line:suggestion
+csharp_style_expression_bodied_constructors = false:silent
+csharp_style_expression_bodied_operators = false:silent
+csharp_style_expression_bodied_indexers = true:silent
+csharp_style_expression_bodied_accessors = true:silent
+csharp_style_expression_bodied_lambdas = true:silent
+csharp_style_expression_bodied_local_functions = false:silent
+
+
+# --- Pattern Matching e Sintaxe Moderna ---
+csharp_style_pattern_matching_over_is_with_cast_check = true:suggestion
+csharp_style_pattern_matching_over_as_with_null_check = true:suggestion
+csharp_style_conditional_delegate_call = true:suggestion
+csharp_style_prefer_switch_expression = true:suggestion     # Preferir 'switch' expressions (moderno)
+csharp_style_prefer_not_pattern = true:suggestion          # Preferir 'is not null' a '!= null'
+csharp_style_prefer_tuple_swap = true:suggestion
+csharp_style_deconstructed_variable_declaration = true:suggestion
+
+
+# --- Outras Preferências ---
+dotnet_style_prefer_interpolated_string = true:suggestion # Preferir interpolação ($"") a String.Format
+dotnet_style_discard_variable = true:suggestion          # Usar _ quando o valor for ignorado
+
+
+# --- Regras de Espaçamento ---
+csharp_space_after_cast = false
+csharp_space_before_colon_in_inheritance_clause = true
+csharp_space_after_colon_in_inheritance_clause = true
+csharp_space_between_method_declaration_parameter_list_parentheses = false
+csharp_space_between_method_call_parameter_list_parentheses = false
+csharp_space_around_binary_operators = before_and_after
+csharp_space_between_parentheses = expressions, type_casts
+
+
+# ======================================================================
+# REGRAS DE NOMEAÇÃO (Naming Conventions)
+# ======================================================================
+
+# --- camelCase para Variáveis Locais e Parâmetros ---
+dotnet_naming_rule.local_and_parameter_should_be_camel_case.severity = suggestion
+dotnet_naming_rule.local_and_parameter_should_be_camel_case.symbols = locals_and_parameters
+dotnet_naming_rule.local_and_parameter_should_be_camel_case.style = camel_case_style
+dotnet_naming_symbols.locals_and_parameters.applicable_kinds = local, parameter
+dotnet_naming_symbols.locals_and_parameters.applicable_accessibilities = *
+dotnet_naming_style.camel_case_style.capitalization = camel_case
+
+# --- PascalCase para Membros Públicos (Métodos, Propriedades, Classes, etc.) ---
+dotnet_naming_rule.members_should_be_pascal_case.severity = suggestion
+dotnet_naming_rule.members_should_be_pascal_case.symbols = members
+dotnet_naming_rule.members_should_be_pascal_case.style = pascal_case_style
+dotnet_naming_symbols.members.applicable_kinds = method, property, class, interface, struct, enum
+dotnet_naming_symbols.members.applicable_accessibilities = *
+dotnet_naming_style.pascal_case_style.capitalization = pascal_case
+
+# ======================================================================
+# PROTEÇÃO DE ARQUIVO GLOBALUSINGS.CS
+# ======================================================================
+[**/GlobalUsings.cs]
+# O diagnóstico IDE0005 é o "Remover usings desnecessários".
+# Ao definir a severidade como 'none', o Code Cleanup ignora a remoção de usings neste arquivo.
+dotnet_diagnostic.IDE0005.severity = none
